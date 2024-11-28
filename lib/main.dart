@@ -1,4 +1,5 @@
 import 'package:block_roadmap/Bloc/counter/counter_bloc.dart';
+import 'package:block_roadmap/Bloc/switch%20bloc/switch_bloc.dart';
 import 'package:block_roadmap/Ui/counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,14 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (_) => CounterBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+    return BlocProvider(
+      create: (_) => CounterBloc(),
+      child: BlocProvider(
+        create: (context) => SwitchBloc(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const CounterScreen(),
         ),
-        home: const CounterScreen(),
       ),
     );
   }
