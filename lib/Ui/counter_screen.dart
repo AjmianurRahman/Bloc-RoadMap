@@ -1,6 +1,7 @@
 import 'package:block_roadmap/Bloc/counter/counter_bloc.dart';
 import 'package:block_roadmap/Bloc/counter/counter_event.dart';
 import 'package:block_roadmap/Bloc/counter/counter_state.dart';
+import 'package:block_roadmap/Bloc/image%20picker/image_picker_screen.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_bloc.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_event.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_state.dart';
@@ -84,6 +85,9 @@ class _CounterScreenState extends State<CounterScreen> {
                 children: [
                   Text300(text: 'Notification:', fontSize: 14),
                   BlocBuilder<SwitchBloc, SwitchState>(
+                    buildWhen: (previous, current){
+                      return previous.isSwitch != current.isSwitch;
+                    },
                       builder: (context, state) {
                     return CupertinoSwitch(
                         value: state.isSwitch,
@@ -97,7 +101,9 @@ class _CounterScreenState extends State<CounterScreen> {
               ),
             ),
 
-            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+            BlocBuilder<SwitchBloc, SwitchState>(
+              buildWhen: (previous, current)=> previous.slider != current.slider,
+                builder: (context, state) {
               return Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 height: 200,
@@ -105,13 +111,23 @@ class _CounterScreenState extends State<CounterScreen> {
               );
             }),
 
-            BlocBuilder<SwitchBloc, SwitchState>(builder: (context, state) {
+            BlocBuilder<SwitchBloc, SwitchState>(
+                buildWhen: (previous, current)=> previous.slider != current.slider,
+                builder: (context, state) {
               return CupertinoSlider(
                   value: state.slider,
                   onChanged: (value) {
                     context.read<SwitchBloc>().add(SliderEvent(slider: value));
                   });
             }),
+
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.deepPurple
+              ),
+              onPressed: (){
+Navigator.push(context, MaterialPageRoute(builder: (context)=>ImagePickerScreen()));
+            }, child: Text300(text: 'Image Picker', fontSize: 16, color: Colors.white,),)
           ],
         ),
       ),

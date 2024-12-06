@@ -9,7 +9,7 @@ class SwitchState extends Equatable{
 
   SwitchState({
     this.isSwitch= false,
-    this.slider= 0.0
+    this.slider= 0.5
   });
 
  SwitchState copyWith({bool? isSwitch, double? slider}){
