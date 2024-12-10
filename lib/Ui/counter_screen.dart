@@ -5,6 +5,7 @@ import 'package:block_roadmap/Bloc/image%20picker/image_picker_screen.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_bloc.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_event.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_state.dart';
+import 'package:block_roadmap/Bloc/todo/to_do_screen.dart';
 import 'package:block_roadmap/Components/text300.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -85,10 +86,9 @@ class _CounterScreenState extends State<CounterScreen> {
                 children: [
                   Text300(text: 'Notification:', fontSize: 14),
                   BlocBuilder<SwitchBloc, SwitchState>(
-                    buildWhen: (previous, current){
-                      return previous.isSwitch != current.isSwitch;
-                    },
-                      builder: (context, state) {
+                      buildWhen: (previous, current) {
+                    return previous.isSwitch != current.isSwitch;
+                  }, builder: (context, state) {
                     return CupertinoSwitch(
                         value: state.isSwitch,
                         onChanged: (newValue) {
@@ -102,32 +102,60 @@ class _CounterScreenState extends State<CounterScreen> {
             ),
 
             BlocBuilder<SwitchBloc, SwitchState>(
-              buildWhen: (previous, current)=> previous.slider != current.slider,
+                buildWhen: (previous, current) =>
+                    previous.slider != current.slider,
                 builder: (context, state) {
-              return Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: 200,
-                color: Colors.deepPurple.withOpacity(state.slider),
-              );
-            }),
+                  return Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: 200,
+                    color: Colors.deepPurple.withOpacity(state.slider),
+                  );
+                }),
 
             BlocBuilder<SwitchBloc, SwitchState>(
-                buildWhen: (previous, current)=> previous.slider != current.slider,
+                buildWhen: (previous, current) =>
+                    previous.slider != current.slider,
                 builder: (context, state) {
-              return CupertinoSlider(
-                  value: state.slider,
-                  onChanged: (value) {
-                    context.read<SwitchBloc>().add(SliderEvent(slider: value));
-                  });
-            }),
+                  return CupertinoSlider(
+                      value: state.slider,
+                      onChanged: (value) {
+                        context
+                            .read<SwitchBloc>()
+                            .add(SliderEvent(slider: value));
+                      });
+                }),
 
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ImagePickerScreen()));
+              },
+              child: Text300(
+                text: 'Image Picker',
+                fontSize: 16,
+                color: Colors.white,
               ),
-              onPressed: (){
-Navigator.push(context, MaterialPageRoute(builder: (context)=>ImagePickerScreen()));
-            }, child: Text300(text: 'Image Picker', fontSize: 16, color: Colors.white,),)
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton(
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ToDoScreen()));
+              },
+              child: Text300(
+                text: 'TODO Page',
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),
