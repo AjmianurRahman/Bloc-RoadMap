@@ -1,6 +1,7 @@
 import 'package:block_roadmap/Bloc/counter/counter_bloc.dart';
 import 'package:block_roadmap/Bloc/counter/counter_event.dart';
 import 'package:block_roadmap/Bloc/counter/counter_state.dart';
+import 'package:block_roadmap/Bloc/favourite/favourite_screen.dart';
 import 'package:block_roadmap/Bloc/image%20picker/image_picker_screen.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_bloc.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_event.dart';
@@ -140,7 +141,7 @@ class _CounterScreenState extends State<CounterScreen> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 10,),
+           const SizedBox(height: 10,),
             ElevatedButton(
               style:
                   ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
@@ -152,6 +153,22 @@ class _CounterScreenState extends State<CounterScreen> {
               },
               child: Text300(
                 text: 'TODO Page',
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 10,),
+            ElevatedButton(
+              style:
+              ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FavouriteScreen()));
+              },
+              child: const Text300(
+                text: 'Favourite Page',
                 fontSize: 16,
                 color: Colors.white,
               ),
