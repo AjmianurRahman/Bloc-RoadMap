@@ -1,0 +1,2 @@
+
+enum PostStatus {LOADING, SUCCESS, FAILED}

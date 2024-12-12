@@ -1,6 +1,7 @@
 import 'package:block_roadmap/Bloc/counter/counter_bloc.dart';
 import 'package:block_roadmap/Bloc/favourite/favourite_bloc.dart';
 import 'package:block_roadmap/Bloc/image%20picker/image_picker_bloc.dart';
+import 'package:block_roadmap/Bloc/posts/posts_bloc.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_bloc.dart';
 import 'package:block_roadmap/Bloc/todo/to_do_bloc.dart';
 import 'package:block_roadmap/Ui/counter_screen.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SwitchBloc()),
         BlocProvider(create: (context)=> ImagePickerBloc(ImagePickerUtils())),
         BlocProvider(create: (context)=> ToDoBloc()),
-        BlocProvider(create: (context)=> FavouriteBloc(FavouriteRepository()))
+        BlocProvider(create: (context)=> FavouriteBloc(FavouriteRepository())),
+        BlocProvider(create: (context)=> PostsBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

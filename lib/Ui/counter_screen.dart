@@ -3,6 +3,7 @@ import 'package:block_roadmap/Bloc/counter/counter_event.dart';
 import 'package:block_roadmap/Bloc/counter/counter_state.dart';
 import 'package:block_roadmap/Bloc/favourite/favourite_screen.dart';
 import 'package:block_roadmap/Bloc/image%20picker/image_picker_screen.dart';
+import 'package:block_roadmap/Bloc/posts/posts_screen.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_bloc.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_event.dart';
 import 'package:block_roadmap/Bloc/switch%20bloc/switch_state.dart';
@@ -169,6 +170,22 @@ class _CounterScreenState extends State<CounterScreen> {
               },
               child: const Text300(
                 text: 'Favourite Page',
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 10,),
+            ElevatedButton(
+              style:
+              ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PostsScreen()));
+              },
+              child: const Text300(
+                text: 'Post Screen',
                 fontSize: 16,
                 color: Colors.white,
               ),
