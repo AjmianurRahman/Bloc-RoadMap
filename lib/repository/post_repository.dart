@@ -14,6 +14,7 @@ class PostRepository {
         return body.map((e){
           return PostsModel(
             postId: e['postId'],
+            id: e['id'] ,
             email: e['email'] as String,
             body: e['body'] as String,
           );
